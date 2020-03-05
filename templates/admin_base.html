@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>SNOOPY77CC Admin</title>
+    <meta name="author" content="John">
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport">
+    <meta name="description" content="Slick Admin Admin UI">
+    <meta name="keywords" content="Slick Admin, Admin UI, Admin Dashboard, John">
+
+    {% block style %}
+    <link href="{{ url_for('static', filename='icomoon/style.css') }}" rel="stylesheet">
+    <!-- bootstrap css -->
+      <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+    <!-- custom css -->
+      <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+    {% endblock style %}
+
+  </head>
+
+  <body>
+
+    <!-- Header start -->
+    <header>
+
+      <!-- Logo start -->
+      <div class="logo", style="color: white;">
+        77CC
+      </div>
+      <!-- Logo end -->
+
+      <!-- Optional Dropdown start -->
+      <div id="optional-dropdown">
+        <ul>
+          <li>
+            <a href="{{ url_for('admin.index') }}">
+              <span class="fs1" aria-hidden="true" data-icon="&#xe900;" ></span>
+            </a>
+          </li>
+          <li>
+            <a href="mail.html">
+              <span class="fs1" aria-hidden="true" data-icon="&#xe945;" ></span>
+              <span class="count-label"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- Optional Dropdown end -->
+
+      <!-- Search bar start -->
+{#      <div class="custom-search">#}
+{#        <input type="text" class="search-query">#}
+{#        <button> <span class="fs1" aria-hidden="true" data-icon="&#xe986;"></span></button>#}
+{#      </div>#}
+      <!-- Search bar end -->
+
+      <!-- Mini navigation start -->
+      <div id="mini-nav">
+        <ul>
+          <li>
+            <a href="{{ url_for('auth.logout') }}">
+              <span class="text-label">Logout </span><span class="fs1" aria-hidden="true" data-icon="&#xe990;"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- Mini navigation end -->
+
+    </header>
+    <!-- Header end -->
+
+    <!-- Main Container start -->
+    <div class="main-container">
+
+      <!-- Mian navigation start -->
+      <div id="mainnav">
+
+        <!-- User pic start -->
+        <div class="user-profile-pic">
+          <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="Slick Admin">
+        </div>
+        <!-- User pic end -->
+
+        <ul>
+          <li>
+{#            <span class="current-arrow">&nbsp;</span>#}
+            <a href="{{ url_for('admin.index') }}">
+              <div class="icon">
+                <span class="fs1" aria-hidden="true" data-icon="&#xe900;"></span>
+              </div>
+              Home
+            </a>
+          </li>
+
+          <li>
+            <a href="{{ url_for('admin.seven_manage_post') }}">
+              <div class="icon">
+                <span class="fs1" aria-hidden="true" data-icon="&#xe905;"></span>
+              </div>
+              77's Blog
+            </a>
+          </li>
+
+          <li>
+            <a>
+              <div class="icon">
+                <span class="fs1" aria-hidden="true" data-icon="&#xe905;"></span>
+              </div>
+              CC's Blog
+            </a>
+            <ul>
+              <li>
+                <a href="{{ url_for('admin.cc_manage_post') }}">Posts</a>
+              </li>
+              <li>
+                <a href="{{ url_for('admin.cc_manage_category') }}">category</a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="{{ url_for('admin.life_manage_post') }}">
+              <div class="icon">
+                <span class="fs1" aria-hidden="true" data-icon="&#xe9da;"></span>
+              </div>
+              Life
+            </a>
+          </li>
+          <li>
+            <a href="{{ url_for('admin.journal_manage_post') }}">
+              <div class="icon">
+                <span class="fs1" aria-hidden="true" data-icon="&#xe9af;"></span>
+              </div>
+              Journal
+            </a>
+          </li>
+          <li>
+            <a href="{{ url_for('admin.manage_album') }}">
+              <div class="icon">
+                <span class="fs1" aria-hidden="true" data-icon="&#xe90d;"></span>
+              </div>
+              Album
+            </a>
+          </li>
+          <li>
+            <a href="{{ url_for('admin.manage_vlog') }}">
+              <div class="icon">
+                <span class="fs1" aria-hidden="true" data-icon="&#xe92a;"></span>
+              </div>
+              Vlog
+            </a>
+          </li>
+          <li>
+            <a href="login.html">
+              <div class="icon">
+                <span class="fs1" aria-hidden="true" data-icon="&#xe96b;"></span>
+              </div>
+              Guestbook
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- Mian navigation end -->
+    </div>
+      <!-- Dashboard wrapper start -->
+      <div class="dashboard-wrapper">
+          {% block content %}
+           <div class="row, page-title">
+             <h1>这是首页</h1>
+           </div>
+            {% endblock content %}
+      </div>
+      <!-- Dashboard wrapper end -->
+
+
+    <!-- Main Container end -->
+    {% block script %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/html5-trunk.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui-1.8.23.custom.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.easy-pie-chart.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.sparkline.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.dataTables.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/custom-tables.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
+    <script type="text/javascript">
+      $(function() {
+      $.fn.raty.defaults.path = 'img';
+
+      $('#rate3').raty({ score: 3 });
+      $('#rate5').raty({ score: 5 });
+      $('#rate1').raty({ score: 1 });
+    });
+    </script>
+  {% endblock script %}
+
+  </body>
+</html>

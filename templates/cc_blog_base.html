@@ -1,0 +1,44 @@
+{% extends 'blog_base.html' %}
+
+{% block title %}
+    <title>CC's Blog</title>
+{% endblock title %}
+
+{% block logo %}
+    <a class="site-logo" href="{{ url_for('blog.cc_blog') }}">
+        CC's Blog
+    </a>
+{% endblock logo %}
+
+{% block nav %}
+    <nav class="header__nav-wrap">
+        <ul class="header__nav">
+            <li><a href="{{ url_for('blog.home') }}" title="">Home</a></li>
+            <li><a href="{{ url_for('blog.seven_blog') }}" title="">77's Blog</a></li>
+            <li class="has-children current">
+                <a href="#0">CC's Blog</a>
+                <ul class="sub-menu">
+                    {% block li %}
+                    {% endblock li %}
+                </ul>
+            </li>
+
+            <li class="has-children current">
+                <a href="#0">Sweet</a>
+                <ul class="sub-menu">
+                    <li><a href="{{ url_for('blog.love') }}">Love</a></li>
+                    <li><a href="{{ url_for('blog.life') }}">Life</a></li>
+                </ul>
+            </li>
+            <li class="has-children current">
+                <a href="#0">Travel</a>
+                <ul class="sub-menu">
+                    <li><a href="journal.html">Journal</a></li>
+                    <li><a href="{{ url_for('blog.album') }}">Album</a></li>
+                </ul>
+            </li>
+            <li><a href="vlog.html" title="">Vlog</a></li>
+            <li><a href="guestbook.html" title="">Guestbook</a></li>
+        </ul>
+    </nav>
+{% endblock nav %}

@@ -1,0 +1,15 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+    <form method="post">
+        {{ form.csrf_token }}
+        {{ form.body.label }}&emsp;{{ form.body() }}<br>
+        {{ form.submit() }}
+    </form>
+{% endblock %}
+
+{% block script %}
+    {{ super() }}
+    <script type="text/javascript" src="{{ url_for('static', filename='ckeditor/ckeditor.js') }}"></script>
+    {{ ckeditor.config(name='body') }}
+{% endblock %}

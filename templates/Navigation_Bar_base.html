@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+  		<title>SNOOPY77CC</title>
+        {% block meta %}
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            <meta name="description" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% endblock meta %}
+
+        {% block style %}
+            <link href="{{ url_for('static', filename='blog_css/bootstrap.min.css') }}" rel="stylesheet">
+            <link href="{{ url_for('static', filename='blog_css/bootstrap-theme.min.css') }}" rel="stylesheet">
+            <link href="{{ url_for('static', filename='blog_css/fontAwesome.css') }}" rel="stylesheet">
+            <link href="{{ url_for('static', filename='blog_css/light-box.css') }}" rel="stylesheet">
+            <link href="{{ url_for('static', filename='blog_css/templatemo-style.css') }}" rel="stylesheet">
+        {% endblock style %}
+    </head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <a href="{{ url_for('blog.home') }}">snoopy<em>77cc</em></a>
+        </div>
+        <div class="menu-icon">
+        <span></span>
+      </div>
+    </nav>
+
+
+    {% block content %}
+        <div id="video-container">
+            <div class="video-overlay"></div>
+            <div class="video-content">
+                <div class="inner">
+                  <h1>Welcome to <em>77CC's blog</em></h1>
+                    <div class="scroll-icon">
+                        <a class="scrollTo" data-scrollTo="portfolio" href="#"><img src="{{ url_for('static', filename='img/scroll-icon.jpg') }}" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <video autoplay loop muted>
+                <source src="{{ url_for('static', filename='img/snoopy.mp4') }}"  type="video/mp4" />
+            </video>
+        </div>
+    {% endblock content %}
+
+    <footer>
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <p>鄂ICP备18011829号-1 | <a href="{{ url_for('admin.index') }}" title="" target="_blank" style="color: white">管理员</a></p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <section class="overlay-menu">
+        <div class="container">
+          <div class="row">
+            <div class="main-menu">
+                <ul>
+                <li><a href="{{ url_for('blog.home') }}">Home</a></li>
+                <li><a href="{{ url_for('blog.seven_blog') }}">77's Blog</a></li>
+                <li><a href="{{ url_for('blog.cc_blog') }}">CC's Blog</a></li>
+                <li class="has-children current">
+                    <a href="#0">Sweet</a>
+                        <ul class="sub-menu">
+                        <li><a href="{{ url_for('blog.love') }}">Love</a></li>
+                        <li><a href="{{ url_for('blog.life') }}">Life</a></li>
+                        </ul>
+                </li>
+                <li class="has-children current">
+                    <a href="#0">Travel</a>
+                        <ul class="sub-menu">
+                        <li><a href="journal.html">Journal</a></li>
+                        <li><a href="{{ url_for('blog.album') }}">Album</a>
+                        </li>
+                        </ul>
+                </li>
+                <li><a href="vlog.html">Vlog</a></li>
+                <li><a href="guestbook.html">Guestbook</a></li>
+                </ul>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    {% block script %}
+        <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{ url_for('static', filename='blog_js/vendor/jquery-1.11.2.min.js') }}"><\/script>')</script>
+        <script type="text/javascript" src="{{ url_for('static', filename='blog_js/vendor/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='blog_js/plugins.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='blog_js/main.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='blog_js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>
+    {% endblock %}
+
+</body>
+</html>

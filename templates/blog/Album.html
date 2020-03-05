@@ -1,0 +1,44 @@
+{% extends 'Navigation_Bar_base.html' %}
+
+{% block content %}
+    <div id="video-container">
+            <div class="video-overlay"></div>
+            <div class="video-content">
+                <div class="inner">
+                  <h1>Welcome to <em>My Album</em></h1>
+                    <div class="scroll-icon">
+                        <a class="scrollTo" data-scrollTo="portfolio" href="#"><img src="{{ url_for('static', filename='img/scroll-icon.jpg') }}" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <video autoplay loop muted>
+                <source src="{{ url_for('static', filename='img/highway.mp4') }}"  type="video/mp4" />
+            </video>
+    </div>
+
+    <div class="full-screen-portfolio" id="portfolio">
+        <div class="container-fluid" style='background: url("../../static/img/album.jpg")'>
+            {% for album in albums %}
+                <div class="col-md-4 col-sm-6">
+                    <div class="portfolio-item">
+{#                        <a href="{{ url_for('blog.photo', album_id=album.id) }}" data-lightbox="image-1">#}
+                            <div class="thumb">
+                                <div class="hover-effect">
+                                    <div class="hover-content">
+                                        <a href="{{ url_for('blog.photo', album_id=album.id) }}"><h1>{{ album.name }}</h1></a>
+                                        <p>{{ album.description }}</p>
+                                    </div>
+                                </div>
+                                <div class="image" >
+                                    <a href="{{ url_for('blog.photo', album_id=album.id) }}">
+                                        <img src="{{ url_for('static', filename=album.filename_small) }}" >
+                                    </a>
+                                </div>
+                            </div>
+{#                        </a>#}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'cc_blog_base.html' %}
+
+
+{% block li %}
+    {% for category in categorys %}
+        <li><a href="{{ url_for('blog.cc_category_blog', category_id=category.id) }}">{{ category.name }}</a></li>
+    {% endfor %}
+{% endblock li %}
+
+{% block content %}
+    <div class="masonry-wrap">
+        <div class="masonry">
+            <div class="grid-sizer"></div>
+                {% for post in posts %}
+                    <article class="masonry__brick entry format-standard animate-this">
+                        {% if post.filename %}
+                            <div class="entry__thumb">
+                                <a href="" class="entry__thumb-link">
+                                    <img src="{{ url_for('static', filename=post.filename) }}"
+                                     srcset="{{ url_for('static', filename=post.filename) }} 1x, {{ url_for('static', filename=post.filename) }} 2x" alt="">
+                                </a>
+                            </div>
+                        {% endif %}
+                        <div class="entry__text">
+                            <div class="entry__header">
+                                <h2 class="entry__title"><a href="{{ url_for('blog.cc_post_blog', post_id=post.id) }}">{{ post.title }}</a></h2>
+                                <div class="entry__meta">
+                                    <span class="entry__meta-cat">
+                                        <a href="{{ url_for('blog.cc_category_blog', category_id=post.category_cc_id) }}">{{ post.category_cc.name }}</a>
+                                    </span>
+                                    <span class="entry__meta-date">
+                                        {{post.timestamp}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="entry__excerpt">
+                                <p>
+                                    {{ post.body }}
+                                </p>
+                            </div>
+                        </div>
+                    </article> <!-- end article -->
+                {% endfor %}
+        </div> <!-- end masonry -->
+    </div> <!-- end masonry-wrap -->
+
+    <div class="row">
+        <div class="column large-full">
+            <nav class="pgn">
+                <ul>
+                    {% if pagination.has_prev %}
+                        <li><a class="pgn__prev" href="/CC_blog/?page={{ pagination.prev_num }}">Prev</a></li>
+                    {% endif %}
+                    {% for i in pagination.iter_pages(1,3,4,1) %}
+                        {% if i==pagination.page %}
+                            <li><span class="pgn__num current">{{ i }}</span></li>
+                        {% elif i == None %}
+                            <li><span class="pgn__num dots">…</span></li>
+                        {% else %}
+                            <li><a class="pgn__num" href="/CC_blog/?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if pagination.has_next %}
+                        <li><a class="pgn__next" href="/CC_blog/?page={{ pagination.next_num }}">Next</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+{% endblock content %}
+

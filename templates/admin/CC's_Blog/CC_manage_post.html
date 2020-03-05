@@ -1,0 +1,71 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+    <div class="row page-title">
+          <h2>
+            CC'S BLOG
+            <small>
+              <li>Home</li>
+              <li>/</li>
+              <li>CC's Blog</li>
+              <li>/</li>
+              <li>Category</li>
+            </small>
+          </h2>
+          <ul class="stats hidden-xs">
+            <li class="ruby-red-bg">
+              <div class="details">
+                  <span class="big"><a href="{{ url_for('admin.cc_new_post') }}" style="color: white">创建文章&nbsp;&nbsp;</a></span>
+{#                <span class="small">Current Sale</span>#}
+              </div>
+            </li>
+          </ul>
+    </div>
+    <div class="row">
+              <div class="col-md-12">
+                <div class="widget">
+                  <div class="widget-header">
+                    <div class="title">
+                      <span class="fs1" aria-hidden="true" style="color: black">CC's Blog 文章列表</span>
+                    </div>
+                  </div>
+                  <div class="widget-body">
+                    <div id="dt_example" class="example_alt_pagination">
+                      <table class="table table-condensed table-striped table-hover table-bordered pull-left" id="data-table">
+                        <thead>
+                          <tr>
+                            <th style="width:10%">ID</th>
+                            <th style="width:35%">标题</th>
+                            <th style="width:15%" class="hidden-phone">类别</th>
+                            <th style="width:20%" class="hidden-phone">时间</th>
+                            <th style="width:20%" class="hidden-phone">操作</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for post in posts %}
+                        <tr class="gradeX">
+                            <td>{{ post.id }}</td>
+                            <td>{{ post.title }}</td>
+                            <td class="hidden-phone">{{ post.category_cc.name }}</td>
+                            <td class="hidden-phone">{{ post.timestamp }}</td>
+                            <td class="hidden-phone">
+                              <a href="{{ url_for('admin.cc_edit_post', post_id=post.id ) }}" class="actions-icons">
+                                <img src="{{ url_for('static', filename = 'img/edit.jpg') }}" alt="edit" class="icons">
+                              </a>
+                              <a href="{{ url_for('admin.cc_delete_post', post_id=post.id ) }}" onclick="return confirm('Are you sure?');">
+                                <img src="{{ url_for('static', filename = 'img/delete.jpg') }}" alt="trash">
+                              </a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    </div>
+
+{% endblock %}
+

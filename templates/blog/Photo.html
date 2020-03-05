@@ -1,0 +1,40 @@
+{% extends 'Navigation_Bar_base.html' %}
+
+{% block content %}
+    <div id="video-container">
+            <div class="video-overlay"></div>
+            <div class="video-content">
+                <div class="inner">
+                  <h1>Welcome to <em>My Album</em></h1>
+                    <div class="scroll-icon">
+                        <a class="scrollTo" data-scrollTo="portfolio" href="#"><img src="{{ url_for('static', filename='img/scroll-icon.jpg') }}" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <video autoplay loop muted>
+                <source src="{{ url_for('static', filename='img/highway.mp4') }}"  type="video/mp4" />
+            </video>
+    </div>
+    {% if photos %}
+        <div class="grid-portfolio" id="portfolio" style='background: url("../../static/img/album.jpg")'>
+            <div class="container" style="margin-top: 16px">
+                {% for photo in photos %}
+                    <div class="col-md-4 col-sm-6">
+                        <div class="portfolio-item">
+                            <div class="thumb">
+                                <a href="{{ url_for('static', filename=photo.filename) }}" data-lightbox="image-1"><div class="hover-effect">
+                                    <div class="hover-content">
+                                            <p>预览</p>
+                                    </div>
+                                </div></a>
+                                <div class="image">
+                                    <img src="{{ url_for('static', filename=photo.filename_small) }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends '77_blog_base.html' %}
+
+{% block content %}
+    <div class="lmlblog-member-main" >
+        <div class="lmlblog-member-content">
+            <div class="lmlblog-member-right">
+                <div class="lmlblog-post-list">
+                    {% for post in posts %}
+                        <div class="lmlblog-posts-list words">
+                            <div class="lmlblog-post-user-info">
+                                <div class="lmlblog-post-user-info-avatar" user-data="1">
+                                    <a href="#1" style="display: inline-block;">
+                                        <span ></span><img src="{{ url_for('static', filename='img/logo.jpg') }}" class="avatar"/></a>
+                                </div>
+                                <div class="lmlblog-post-user-info-name">
+                                    <a href="#1">
+                                        <front style="color:#333;font-weight:600">77</front>
+                                    </a>
+                                </div>
+                                <div class="lmlblog-post-user-info-time" title="timestamp">
+                                    {{ post.timestamp }}
+                                </div>
+                            </div>
+
+                            <div class="lmlblog-post-content ">
+                                {% if post.body|display_post|safe %}
+                                    {{ post.body|display_post|safe }}
+                                {% else %}
+                                    <p></p>
+                                {% endif %}
+                            </div>
+
+                            {% set photos = post.body|display_img %}
+                            {% if photos and (photos|length==6 or photos|length==9 or photos|length==3 or photos|length>9)%}
+                                {% for photo in photos %}
+                                    {% if loop.index%3==1 and loop.index<10%}
+                                        <div class="lmlblog-post-images-list clear">
+                                    {% endif %}
+                                    <a href="{{ url_for('static', filename = 'uploads/'+photo) }}" data-fancybox="gallery" data-caption='<i class="fa fa-copyright"></i> lmlblog'>
+                                        <img src="{{ url_for('static', filename = 'uploads/'+photo) }}" alt=""/></a>
+                                    {% if (loop.index%3==0 and loop.index<8) or loop.last %}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                            {% if photos and (photos|length==2 or photos|length==4 or photos|length==1)%}
+                                {% for photo in photos %}
+                                    {% if loop.index%2==1 %}
+                                        <div class="lmlblog-post-images-list clear">
+                                    {% endif %}
+                                    <a href="{{ url_for('static', filename = 'uploads/'+photo) }}" data-fancybox="gallery" data-caption='<i class="fa fa-copyright"></i> lmlblog'>
+                                        <img src="{{ url_for('static', filename = 'uploads/'+photo) }}" alt=""/></a>
+                                    {% if loop.index%2==0 or loop.last %}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                   <div class="lmlblog-pager">
+                        {% if pagination.has_prev %}
+                             <a class="lmlblog-pager-left" href="/77_blog/?page={{ pagination.pre_num }}">上一页</a>
+                        {% else %}
+                            <a class="lmlblog-pager-left">上一页</a>
+                        {% endif %}
+
+                        <div class="lmlblog-pager-center">
+                            <select onchange="s_click(this)">
+                                {% for i in pagination.iter_pages() %}
+                                    {% if i==pagination.page %}
+                                        {% if loop.index==1 %}
+                                            <option selected="selected" value="/77_blog/?page={{ i }}">&nbsp;&nbsp;首&nbsp;&nbsp;页</option>
+                                        {% elif loop.last %}
+                                            <option selected="selected" value="/77_blog/?page={{ i }}">&nbsp;&nbsp;末&nbsp;&nbsp;页</option>
+                                        {% else %}
+                                            <option selected="selected" value="/77_blog/?page={{ i }}">第 {{ i }} 页</option>
+                                         {% endif %}
+                                     {% else %}
+                                        <option value="/77_blog/?page={{ i }}">第 {{ i }} 页</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        {% if pagination.has_next %}
+                            <a class="lmlblog-pager-right" href="/77_blog/?page={{ pagination.next_num }}">下一页</a>
+                        {% else %}
+                            <a class="lmlblog-pager-right" ">下一页</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock  content %}

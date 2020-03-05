@@ -1,0 +1,72 @@
+{% extends 'Navigation_Bar_base.html' %}
+
+{% block meta %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+{% endblock %}
+
+{% block style %}
+    {{ super() }}
+    <style type="text/css">
+		img.wp-smiley,
+		img.emoji {
+        display: inline !important;
+        border: none !important;
+        box-shadow: none !important;
+        height: 1em !important;
+        width: 1em !important;
+        margin: 0 .07em !important;
+        vertical-align: -0.1em !important;
+        background: none !important;
+        padding: 0 !important;
+    }
+    </style>
+    <link href="{{ url_for('static', filename='blog_css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='blog_css/lmlblog.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='blog_css/all.css') }}" rel="stylesheet">
+{% endblock style %}
+
+{% block script %}
+    {{ super() }}
+    <script type="text/javascript" src="{{ url_for('static', filename='blog_js/jquery.min_77.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='blog_js/base.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='blog_js/all.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='blog_js/plupload.full.min.js') }}"></script>
+{#    <script type="text/javascript" src="{{ url_for('static', filename='blog_js/layui.js') }}"></script>#}
+    <a href="javascript:topFunction();" class="cd-top"></a>
+    <script>
+        // 当网页向下滑动 20px 出现"返回顶部" 按钮
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {console.log(121);
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementsByClassName("cd-top").style.display = "block";
+            } else {
+                document.getElementsByClassName("cd-top").style.display = "none";
+            }
+        }
+        // 点击按钮，返回顶部
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+
+        <script type="text/javascript">
+        //select跳页
+        function s_click(obj) {
+            var num = 0;
+            for (var i = 0; i < obj.options.length; i++) {
+                if (obj.options[i].selected == true) {
+                    num++;
+                }
+            }
+            if (num == 1) {
+                var url = obj.options[obj.selectedIndex].value;
+                window.open(url, "_self"); //这里修改打开连接方式
+            }
+        }
+        </script>
+{% endblock script %}

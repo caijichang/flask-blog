@@ -1,0 +1,65 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+        <div class="row page-title">
+          <h2>
+            ALBUM
+            <small>
+              <li>Home</li>
+              <li>/</li>
+              <li>Album</li>
+                <li>/</li>
+              <li>Photo</li>
+            </small>
+          </h2>
+          <ul class="stats hidden-xs">
+            <li class="ruby-red-bg">
+              <div class="details">
+                  <span class="big"><a href="{{ url_for('admin.new_photo', album_id=album_id) }}" style="color: white">添加图片&nbsp;&nbsp;</a></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="widget">
+              <div class="widget-header">
+                <div class="title">
+                  <span class="fs1" aria-hidden="true" data-icon="&#xe90d;"></span> 照片
+                </div>
+              </div>
+              <div class="widget-body">
+                <div class="row">
+                    {% for photo in photos %}
+                        <div class="col-sm-6 col-md-3">
+                            <div class="thumbnail">
+                                <img src="{{ url_for('static', filename=photo.filename_small) }}" >
+                                <div class="caption">
+                                  <a href="{{ path+photo.filename }}" class="actions-icons">
+                                      <img src="{{ url_for('static', filename = 'img/sousuo.png') }}" alt="edit" class="icons">
+                                  </a>
+                                  <a href="{{ url_for('admin.delete_photo', photo_id=photo.id) }}" onclick="return confirm('Are you sure?');">
+                                      <img src="{{ url_for('static', filename = 'img/delete.jpg') }}" alt="trash">
+                                  </a>
+                              </div>
+                            </div>
+                          </div>
+                        {% if loop.index%4==0%}
+                            <p>&nbsp;</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/html5-trunk.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui-1.8.23.custom.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.easy-pie-chart.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/custom.js') }}"></script>
+{% endblock %}

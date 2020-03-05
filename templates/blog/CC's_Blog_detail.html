@@ -1,0 +1,7 @@
+{% extends 'cc_blog_base.html' %}
+
+{% block li %}
+    {% for category in categorys %}
+        <li><a href="{{ url_for('blog.cc_category_blog', category_id=category.id) }}">{{ category.name }}</a></li>
+    {% endfor %}
+{% endblock li %}

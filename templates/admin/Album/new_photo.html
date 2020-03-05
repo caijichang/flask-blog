@@ -1,0 +1,23 @@
+{% extends 'admin_base.html' %}
+
+{% block style %}
+    {{ super() }}
+    <link href="{{ url_for('static', filename='css/dropzone.min.css') }}" rel="stylesheet">
+    {{ dropzone.style('margin: 20px 0; border: 2px dashed #0087F7; min-height: 400px;') }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            {{ dropzone.create(action=url_for('admin.new_photo', album_id=album_id)) }}
+            <a class="btn btn-light float-right" href="{{ url_for('admin.manage_photo', album_id=album_id) }}">Done</a>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    {{ super() }}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/dropzone.min.js') }}"></script>
+    {{ dropzone.config() }}
+{% endblock %}
